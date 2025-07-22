@@ -1263,6 +1263,99 @@ df['is_ransomware'] = df['category'].apply(lambda x: 0 if x in benign_categories
 df.head()
 ```
 
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>UNIX_time_sec</th>
+      <th>UNIX_time_ns</th>
+      <th>GPA</th>
+      <th>size</th>
+      <th>entropy</th>
+      <th>type</th>
+      <th>category</th>
+      <th>is_ransomware</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1674094033</td>
+      <td>8577689</td>
+      <td>18608038176</td>
+      <td>0</td>
+      <td>-1.0</td>
+      <td>2</td>
+      <td>Firefox</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1674093980</td>
+      <td>244086569</td>
+      <td>48161696</td>
+      <td>0</td>
+      <td>-1.0</td>
+      <td>2</td>
+      <td>Firefox</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1674094013</td>
+      <td>490348749</td>
+      <td>1889674000</td>
+      <td>0</td>
+      <td>-1.0</td>
+      <td>4</td>
+      <td>Firefox</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1674094062</td>
+      <td>202609873</td>
+      <td>1889674036</td>
+      <td>0</td>
+      <td>-1.0</td>
+      <td>4</td>
+      <td>Firefox</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1674094010</td>
+      <td>6053928</td>
+      <td>1887699136</td>
+      <td>0</td>
+      <td>-1.0</td>
+      <td>4</td>
+      <td>Firefox</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
 ### Save the dataset.
 
 
@@ -1289,9 +1382,100 @@ y = df['is_ransomware']
 
 ### Determine if we need to standardize the dataset.
 
+
 ```python
 df[['GPA', 'size', 'entropy', 'type']].describe()
 ```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>GPA</th>
+      <th>size</th>
+      <th>entropy</th>
+      <th>type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>1.425904e+06</td>
+      <td>1.425904e+06</td>
+      <td>1.425904e+06</td>
+      <td>1.425904e+06</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>2.774001e+09</td>
+      <td>1.174879e+01</td>
+      <td>-4.849244e-01</td>
+      <td>3.986897e+00</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>1.098209e+09</td>
+      <td>2.190548e+02</td>
+      <td>5.036265e-01</td>
+      <td>1.613532e-01</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>2.252848e+06</td>
+      <td>0.000000e+00</td>
+      <td>-1.000000e+00</td>
+      <td>2.000000e+00</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>1.889674e+09</td>
+      <td>0.000000e+00</td>
+      <td>-1.000000e+00</td>
+      <td>4.000000e+00</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>1.890592e+09</td>
+      <td>0.000000e+00</td>
+      <td>-0.000000e+00</td>
+      <td>4.000000e+00</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>3.744641e+09</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>4.000000e+00</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>2.748795e+11</td>
+      <td>4.096000e+03</td>
+      <td>9.955391e-01</td>
+      <td>4.000000e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 ### Train-Test model and split the dataset.
 
