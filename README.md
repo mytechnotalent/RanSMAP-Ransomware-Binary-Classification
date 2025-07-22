@@ -120,7 +120,7 @@ import joblib
 #     for p in ['mem_read.csv','mem_write.csv','mem_readwrite.csv','mem_exec.csv']:
 #         # For every matching file in all subdirectories
 #         [
-#             # For each chunk, group by 'type' and sample 1% from each group, then assign category
+#             # For each chunk, group by 'type' and sample 0.1% from each group, then assign category
 #             pd.concat([g.sample(frac=0.001) for _,g in c.groupby('type')])
 #               .assign(category=k)
 #               .to_csv(out, header=out.tell()==0, index=0, mode='a')
